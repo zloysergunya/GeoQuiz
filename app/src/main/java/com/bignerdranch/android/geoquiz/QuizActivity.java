@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,8 @@ public class QuizActivity extends AppCompatActivity {
     };
 
     private int mCurrentIndex = 0;
+    private int mCountAnswers = 0;
+    private int mCountTrueAnswers = 0;
     private boolean mIsCheater;
 
     @Override
@@ -43,6 +46,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         if (savedInstanceState != null) {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
@@ -62,6 +66,11 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkAnswer(true);
+                mCountAnswers++;
+                if (mQuestionBank[mCurrentIndex].isAnswerTrue()) {
+                    mCountTrueAnswers++;
+                }
+                percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
         });
         mFalseButton = (Button) findViewById(R.id.false_button);
@@ -69,6 +78,11 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkAnswer(false);
+                mCountAnswers++;
+                if (!mQuestionBank[mCurrentIndex].isAnswerTrue()) {
+                    mCountTrueAnswers++;
+                }
+                percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
         });
 
@@ -84,6 +98,7 @@ public class QuizActivity extends AppCompatActivity {
                     mCurrentIndex = mQuestionBank.length - 1;
                     updateQuestion();
                 }
+                isAnswered(mCurrentIndex);
             }
         });
 
@@ -94,6 +109,7 @@ public class QuizActivity extends AppCompatActivity {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 mIsCheater = false;
                 updateQuestion();
+                isAnswered(mCurrentIndex);
             }
         });
 
@@ -177,7 +193,24 @@ public class QuizActivity extends AppCompatActivity {
                 messageResId = R.string.incorrect_toast;
             }
         }
+        mTrueButton.setEnabled(false);
+        mFalseButton.setEnabled(false);
+        mQuestionBank[mCurrentIndex].setAnswered(true);
 
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+    }
+
+    private void isAnswered(int index){
+        boolean isQuestionAnswered = mQuestionBank[index].isAnswered();
+        mTrueButton.setEnabled(!isQuestionAnswered);
+        mFalseButton.setEnabled(!isQuestionAnswered);
+    }
+
+    private void percantageOfCorrectAnswers(int countAnswers, int countTrueAnswers){
+        if (countAnswers == mQuestionBank.length){
+            double percent = countTrueAnswers * 100.0 / countAnswers;
+            Toast.makeText(QuizActivity.this, "Percentage of correct answers "
+                    + Math.round(percent) + "%", Toast.LENGTH_SHORT).show();
+        }
     }
 }
