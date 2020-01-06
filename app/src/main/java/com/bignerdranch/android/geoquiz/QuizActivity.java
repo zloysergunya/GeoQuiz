@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,8 @@ public class QuizActivity extends AppCompatActivity {
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index";
     private static final int REQUEST_CODE_CHEAT = 0;
+
+    private LinearLayout mBgElement;
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -52,6 +56,8 @@ public class QuizActivity extends AppCompatActivity {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
         }
 
+        mBgElement = (LinearLayout) findViewById(R.id.bgElement);
+
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
         mQuestionTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +75,9 @@ public class QuizActivity extends AppCompatActivity {
                 mCountAnswers++;
                 if (mQuestionBank[mCurrentIndex].isAnswerTrue()) {
                     mCountTrueAnswers++;
+                    mBgElement.setBackgroundColor(Color.GREEN);
+                } else {
+                    mBgElement.setBackgroundColor(Color.RED);
                 }
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
@@ -81,6 +90,9 @@ public class QuizActivity extends AppCompatActivity {
                 mCountAnswers++;
                 if (!mQuestionBank[mCurrentIndex].isAnswerTrue()) {
                     mCountTrueAnswers++;
+                    mBgElement.setBackgroundColor(Color.GREEN);
+                } else {
+                    mBgElement.setBackgroundColor(Color.RED);
                 }
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
@@ -99,6 +111,7 @@ public class QuizActivity extends AppCompatActivity {
                     updateQuestion();
                 }
                 isAnswered(mCurrentIndex);
+                mBgElement.setBackgroundColor(Color.WHITE);
             }
         });
 
@@ -110,6 +123,7 @@ public class QuizActivity extends AppCompatActivity {
                 mIsCheater = false;
                 updateQuestion();
                 isAnswered(mCurrentIndex);
+                mBgElement.setBackgroundColor(Color.WHITE);
             }
         });
 
@@ -124,6 +138,7 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         updateQuestion();
+        mBgElement.setBackgroundColor(Color.WHITE);
     }
 
     @Override
