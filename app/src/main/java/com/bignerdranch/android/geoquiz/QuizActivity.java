@@ -29,6 +29,7 @@ public class QuizActivity extends AppCompatActivity {
     private ImageButton mNextButton;
     private ImageButton mPrevButton;
     private Button mCheatButton;
+    private Button mRestartGame;
     private TextView mQuestionTextView;
 
     private Question[] mQuestionBank = new Question[] {
@@ -57,6 +58,15 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         mBgElement = (LinearLayout) findViewById(R.id.bgElement);
+
+        mRestartGame = (Button) findViewById(R.id.restart_button);
+        mRestartGame.setVisibility(View.GONE);
+        mRestartGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restartGame();
+            }
+        });
 
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
         mQuestionTextView.setOnClickListener(new View.OnClickListener() {
@@ -226,6 +236,21 @@ public class QuizActivity extends AppCompatActivity {
             double percent = countTrueAnswers * 100.0 / countAnswers;
             Toast.makeText(QuizActivity.this, "Percentage of correct answers "
                     + Math.round(percent) + "%", Toast.LENGTH_SHORT).show();
+            mRestartGame.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void restartGame() {
+        for (int i = 0; i < mQuestionBank.length; i++) {
+            mQuestionBank[i].setAnswered(false);
+        }
+        mBgElement.setBackgroundColor(Color.WHITE);
+        mTrueButton.setEnabled(true);
+        mFalseButton.setEnabled(true);
+        mCurrentIndex = 0;
+        mCountAnswers = 0;
+        mCountTrueAnswers = 0;
+        mRestartGame.setVisibility(View.GONE);
+        updateQuestion();
     }
 }
