@@ -8,6 +8,7 @@ public class Question {
     private boolean mAnswerTrue;
     private boolean mAnswered;
     private int mBgColor;
+    private boolean mCheatered;
 
     public Question() {}
 
@@ -15,7 +16,7 @@ public class Question {
         mTextResId = textResId;
         mAnswerTrue = answerTrue;
         mAnswered = false;
-
+        mCheatered = false;
     }
 
     public int getTextResId() {
@@ -48,5 +49,13 @@ public class Question {
 
     public void setBgColor(int bgColor) {
         mBgColor = bgColor;
+    }
+
+    public boolean isCheatered() {
+        return mCheatered;
+    }
+
+    public void setCheatered(boolean cheatered) {
+        mCheatered = cheatered;
     }
 }

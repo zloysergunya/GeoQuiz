@@ -44,7 +44,6 @@ public class QuizActivity extends AppCompatActivity {
     private int mCurrentIndex = 0;
     private int mCountAnswers = 0;
     private int mCountTrueAnswers = 0;
-    private boolean mIsCheater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +91,7 @@ public class QuizActivity extends AppCompatActivity {
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
         });
+
         mFalseButton = (Button) findViewById(R.id.false_button);
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,16 +112,13 @@ public class QuizActivity extends AppCompatActivity {
         mPrevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mIsCheater = false;
                 if (mCurrentIndex != 0) {
                     mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
-                    updateQuestion();
                 } else {
                     mCurrentIndex = mQuestionBank.length - 1;
-                    updateQuestion();
                 }
                 isAnswered(mCurrentIndex);
-                mBgElement.setBackgroundColor(mQuestionBank[mCurrentIndex].getBgColor());
+                updateQuestion();
             }
         });
 
@@ -130,10 +127,8 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                mIsCheater = false;
                 updateQuestion();
                 isAnswered(mCurrentIndex);
-                mBgElement.setBackgroundColor(mQuestionBank[mCurrentIndex].getBgColor());
             }
         });
 
@@ -160,7 +155,7 @@ public class QuizActivity extends AppCompatActivity {
             if (data == null) {
                 return;
             }
-            mIsCheater = CheatActivity.wasAnswerShown(data);
+            mQuestionBank[mCurrentIndex].setCheatered(CheatActivity.wasAnswerShown(data));
         }
     }
 
@@ -204,12 +199,13 @@ public class QuizActivity extends AppCompatActivity {
     private void updateQuestion() {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
+        mBgElement.setBackgroundColor(mQuestionBank[mCurrentIndex].getBgColor());
     }
 
     private void checkAnswer(boolean userPressedTrue) {
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
         int messageResId = 0;
-        if(mIsCheater) {
+        if(mQuestionBank[mCurrentIndex].isCheatered()) {
             messageResId = R.string.judgment_toast;
         } else {
             if (userPressedTrue == answerIsTrue) {
