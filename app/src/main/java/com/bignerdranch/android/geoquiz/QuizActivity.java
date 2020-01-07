@@ -241,16 +241,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void restartGame() {
-        for (int i = 0; i < mQuestionBank.length; i++) {
-            mQuestionBank[i].setAnswered(false);
-        }
-        mBgElement.setBackgroundColor(Color.WHITE);
-        mTrueButton.setEnabled(true);
-        mFalseButton.setEnabled(true);
+        this.recreate();
         mCurrentIndex = 0;
-        mCountAnswers = 0;
-        mCountTrueAnswers = 0;
-        mRestartGame.setVisibility(View.GONE);
-        updateQuestion();
     }
 }
