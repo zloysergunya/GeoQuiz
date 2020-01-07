@@ -121,7 +121,7 @@ public class QuizActivity extends AppCompatActivity {
                     updateQuestion();
                 }
                 isAnswered(mCurrentIndex);
-                mBgElement.setBackgroundColor(Color.WHITE);
+                mBgElement.setBackgroundColor(mQuestionBank[mCurrentIndex].getBgColor());
             }
         });
 
@@ -133,7 +133,7 @@ public class QuizActivity extends AppCompatActivity {
                 mIsCheater = false;
                 updateQuestion();
                 isAnswered(mCurrentIndex);
-                mBgElement.setBackgroundColor(Color.WHITE);
+                mBgElement.setBackgroundColor(mQuestionBank[mCurrentIndex].getBgColor());
             }
         });
 
@@ -214,8 +214,10 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             if (userPressedTrue == answerIsTrue) {
                 messageResId = R.string.correct_toast;
+                mQuestionBank[mCurrentIndex].setBgColor(Color.GREEN);
             } else {
                 messageResId = R.string.incorrect_toast;
+                mQuestionBank[mCurrentIndex].setBgColor(Color.RED);
             }
         }
         mTrueButton.setEnabled(false);

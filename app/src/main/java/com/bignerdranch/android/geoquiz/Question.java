@@ -1,15 +1,21 @@
 package com.bignerdranch.android.geoquiz;
 
+import android.graphics.Color;
+
 public class Question {
 
     private int mTextResId;
     private boolean mAnswerTrue;
     private boolean mAnswered;
+    private int mBgColor;
+
+    public Question() {}
 
     public Question(int textResId, boolean answerTrue) {
         mTextResId = textResId;
         mAnswerTrue = answerTrue;
         mAnswered = false;
+
     }
 
     public int getTextResId() {
@@ -34,5 +40,13 @@ public class Question {
 
     public void setAnswered(boolean answered) {
         mAnswered = answered;
+    }
+
+    public int getBgColor() {
+        return mBgColor;
+    }
+
+    public void setBgColor(int bgColor) {
+        mBgColor = bgColor;
     }
 }
