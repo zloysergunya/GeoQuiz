@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 
 public class QuizActivity extends AppCompatActivity {
@@ -31,6 +34,8 @@ public class QuizActivity extends AppCompatActivity {
     private Button mCheatButton;
     private Button mRestartGame;
     private TextView mQuestionTextView;
+    private TextView mCurrentQuestionTextView;
+    private TextView mCountHintsTextView;
 
     private Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_australia, true),
@@ -44,6 +49,7 @@ public class QuizActivity extends AppCompatActivity {
     private int mCurrentIndex = 0;
     private int mCountAnswers = 0;
     private int mCountTrueAnswers = 0;
+    private int mCountHints = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +72,13 @@ public class QuizActivity extends AppCompatActivity {
                 restartGame();
             }
         });
+
+        mCurrentQuestionTextView = (TextView) findViewById(R.id.current_question);
+        mCurrentQuestionTextView.setTypeface(null, Typeface.BOLD);
+        mCurrentQuestionTextView.setText("Question " + (mCurrentIndex + 1) + " of " + mQuestionBank.length);
+
+        mCountHintsTextView = (TextView) findViewById(R.id.count_hints);
+        mCountHintsTextView.setText(mCountHints + " hint(s) left");
 
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
         mQuestionTextView.setOnClickListener(new View.OnClickListener() {
@@ -156,6 +169,15 @@ public class QuizActivity extends AppCompatActivity {
                 return;
             }
             mQuestionBank[mCurrentIndex].setCheatered(CheatActivity.wasAnswerShown(data));
+            if (mQuestionBank[mCurrentIndex].isCheatered()) {
+                mCountHints--;
+                if (mCountHints <= 0) {
+                    mCheatButton.setEnabled(false);
+                    mCountHintsTextView.setText("Hints are over!");
+                } else {
+                    mCountHintsTextView.setText(mCountHints + " hint(s) left");
+                }
+            }
         }
     }
 
@@ -200,6 +222,7 @@ public class QuizActivity extends AppCompatActivity {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
         mBgElement.setBackgroundColor(mQuestionBank[mCurrentIndex].getBgColor());
+        mCurrentQuestionTextView.setText("Question " + (mCurrentIndex + 1) + " of " + mQuestionBank.length);
     }
 
     private void checkAnswer(boolean userPressedTrue) {
