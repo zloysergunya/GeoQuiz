@@ -16,9 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-
 public class QuizActivity extends AppCompatActivity {
 
     private static final String TAG = "QuizActivity";
