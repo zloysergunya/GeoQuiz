@@ -87,9 +87,9 @@ public class QuizActivity extends AppCompatActivity {
                 mCountAnswers++;
                 if (mQuestionBank[mCurrentIndex].isAnswerTrue()) {
                     mCountTrueAnswers++;
-                    mBgElement.setBackgroundColor(Color.GREEN);
+                    mBgElement.setBackgroundColor(Color.rgb(144, 238, 144)); // Green
                 } else {
-                    mBgElement.setBackgroundColor(Color.RED);
+                    mBgElement.setBackgroundColor(Color.rgb(250, 128, 114)); // Red
                 }
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
@@ -103,9 +103,9 @@ public class QuizActivity extends AppCompatActivity {
                 mCountAnswers++;
                 if (!mQuestionBank[mCurrentIndex].isAnswerTrue()) {
                     mCountTrueAnswers++;
-                    mBgElement.setBackgroundColor(Color.GREEN);
+                    mBgElement.setBackgroundColor(Color.rgb(144, 238, 144)); // Green
                 } else {
-                    mBgElement.setBackgroundColor(Color.RED);
+                    mBgElement.setBackgroundColor(Color.rgb(250, 128, 114)); // Red
                 }
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
@@ -146,7 +146,7 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         updateQuestion();
-        mBgElement.setBackgroundColor(Color.WHITE);
+        mBgElement.setBackgroundColor(Color.rgb(224, 255, 255));
     }
 
     @Override
@@ -223,10 +223,10 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             if (userPressedTrue == answerIsTrue) {
                 messageResId = R.string.correct_toast;
-                mQuestionBank[mCurrentIndex].setBgColor(Color.GREEN);
+                mQuestionBank[mCurrentIndex].setBgColor(Color.rgb(144, 238, 144)); // Green
             } else {
                 messageResId = R.string.incorrect_toast;
-                mQuestionBank[mCurrentIndex].setBgColor(Color.RED);
+                mQuestionBank[mCurrentIndex].setBgColor(Color.rgb(250, 128, 114)); // Red
             }
         }
         mTrueButton.setEnabled(false);
