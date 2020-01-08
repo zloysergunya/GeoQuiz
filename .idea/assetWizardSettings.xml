@@ -48,7 +48,7 @@
                                     <map>
                                       <entry key="outputName" value="ic_launch_quiz" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="6422ff" />
+                                      <entry key="themeColor" value="2407ff" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -130,6 +130,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>
