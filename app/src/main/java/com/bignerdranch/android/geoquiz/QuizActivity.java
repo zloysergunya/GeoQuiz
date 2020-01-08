@@ -38,9 +38,13 @@ public class QuizActivity extends AppCompatActivity {
             new Question(R.string.question_australia, true),
             new Question(R.string.question_oceans, true),
             new Question(R.string.question_mideast, false),
+            new Question(R.string.question_day, true),
             new Question(R.string.question_africa, false),
             new Question(R.string.question_americas, true),
+            new Question(R.string.question_continents, true),
+            new Question(R.string.question_penguins, false),
             new Question(R.string.question_asia, true),
+            new Question(R.string.question_island_australia, false)
     };
 
     private int mCurrentIndex = 0;
@@ -146,7 +150,7 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         updateQuestion();
-        mBgElement.setBackgroundColor(Color.rgb(224, 255, 255));
+        mBgElement.setBackgroundColor(Color.WHITE);
     }
 
     @Override
