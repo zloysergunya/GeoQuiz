@@ -28,8 +28,8 @@ public class QuizActivity extends AppCompatActivity {
     private Button mFalseButton;
     private ImageButton mNextButton;
     private ImageButton mPrevButton;
-    private Button mCheatButton;
-    private Button mRestartGame;
+    private ImageButton mCheatButton;
+    private ImageButton mRestartGame;
     private TextView mQuestionTextView;
     private TextView mCurrentQuestionTextView;
     private TextView mCountHintsTextView;
@@ -65,7 +65,7 @@ public class QuizActivity extends AppCompatActivity {
 
         mBgElement = (LinearLayout) findViewById(R.id.bgElement);
 
-        mRestartGame = (Button) findViewById(R.id.restart_button);
+        mRestartGame = (ImageButton) findViewById(R.id.restart_button);
         mRestartGame.setVisibility(View.GONE);
         mRestartGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,7 +139,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
-        mCheatButton = (Button) findViewById(R.id.cheat_button);
+        mCheatButton = (ImageButton) findViewById(R.id.cheat_button);
         mCheatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -36,7 +36,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/home/zloysergunya/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/android-studio-ide-191.5977832-linux/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_language_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/home/zloysergunya/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/android-studio-ide-191.5977832-linux/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_cached_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -46,9 +46,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_launch_quiz" />
+                                      <entry key="outputName" value="ic_restart_quiz" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="2407ff" />
+                                      <entry key="themeColor" value="fffb00" />
                                     </map>
                                   </option>
                                 </PersistentState>
