@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView mQuestionTextView;
     private TextView mCurrentQuestionTextView;
     private TextView mCountHintsTextView;
+    private ImageView mMainQuestionImageView;
 
     private Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_australia, true),
@@ -64,6 +66,9 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         mBgElement = (LinearLayout) findViewById(R.id.bgElement);
+
+        mMainQuestionImageView = (ImageView) findViewById(R.id.main_question_photo);
+        mMainQuestionImageView.setImageResource(R.drawable.australia_01);
 
         mRestartGame = (ImageButton) findViewById(R.id.restart_button);
         mRestartGame.setVisibility(View.GONE);
