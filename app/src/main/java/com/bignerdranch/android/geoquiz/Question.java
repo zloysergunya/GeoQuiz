@@ -1,7 +1,5 @@
 package com.bignerdranch.android.geoquiz;
 
-import android.graphics.Color;
-
 public class Question {
 
     private int mTextResId;
@@ -9,11 +7,13 @@ public class Question {
     private boolean mAnswered;
     private int mBgColor;
     private boolean mCheatered;
+    private int mImageResId;
 
     public Question() {}
 
-    public Question(int textResId, boolean answerTrue) {
+    public Question(int textResId, int imageResId, boolean answerTrue) {
         mTextResId = textResId;
+        mImageResId = imageResId;
         mAnswerTrue = answerTrue;
         mAnswered = false;
         mCheatered = false;
@@ -57,5 +57,13 @@ public class Question {
 
     public void setCheatered(boolean cheatered) {
         mCheatered = cheatered;
+    }
+
+    public int getImageResId() {
+        return mImageResId;
+    }
+
+    public void setImageResId(int imageResId) {
+        mImageResId = imageResId;
     }
 }

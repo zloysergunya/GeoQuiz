@@ -38,16 +38,16 @@ public class QuizActivity extends AppCompatActivity {
     private ImageView mMainQuestionImageView;
 
     private Question[] mQuestionBank = new Question[] {
-            new Question(R.string.question_australia, true),
-            new Question(R.string.question_oceans, true),
-            new Question(R.string.question_mideast, false),
-            new Question(R.string.question_day, true),
-            new Question(R.string.question_africa, false),
-            new Question(R.string.question_americas, true),
-            new Question(R.string.question_continents, true),
-            new Question(R.string.question_penguins, false),
-            new Question(R.string.question_asia, true),
-            new Question(R.string.question_island_australia, false)
+            new Question(R.string.question_australia, R.drawable.australia_01, true),
+            new Question(R.string.question_oceans, R.drawable.australia_01, true),
+            new Question(R.string.question_mideast, R.drawable.australia_01, false),
+            new Question(R.string.question_day, R.drawable.australia_01, true),
+            new Question(R.string.question_africa, R.drawable.australia_01, false),
+            new Question(R.string.question_americas, R.drawable.australia_01, true),
+            new Question(R.string.question_continents, R.drawable.australia_01, true),
+            new Question(R.string.question_penguins, R.drawable.australia_01, false),
+            new Question(R.string.question_asia, R.drawable.australia_01, true),
+            new Question(R.string.question_island_australia, R.drawable.australia_01, false)
     };
 
     private int mCurrentIndex = 0;
@@ -69,7 +69,6 @@ public class QuizActivity extends AppCompatActivity {
         mBgElement = (LinearLayout) findViewById(R.id.bgElement);
 
         mMainQuestionImageView = (ImageView) findViewById(R.id.main_question_photo);
-        mMainQuestionImageView.setImageResource(R.drawable.australia_01);
 
         mRestartGame = (ImageButton) findViewById(R.id.restart_button);
         mRestartGame.setVisibility(View.GONE);
@@ -225,8 +224,10 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void updateQuestion() {
-        int question = mQuestionBank[mCurrentIndex].getTextResId();
-        mQuestionTextView.setText(question);
+        int questionText = mQuestionBank[mCurrentIndex].getTextResId();
+        int questionImage = mQuestionBank[mCurrentIndex].getImageResId();
+        mQuestionTextView.setText(questionText);
+        mMainQuestionImageView.setImageResource(questionImage);
         mBgElement.setBackgroundColor(mQuestionBank[mCurrentIndex].getBgColor());
         mCurrentQuestionTextView.setText("Question " + (mCurrentIndex + 1) + " of " + mQuestionBank.length);
     }
