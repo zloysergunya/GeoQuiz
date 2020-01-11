@@ -2,6 +2,7 @@ package com.bignerdranch.android.geoquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -54,6 +55,7 @@ public class QuizActivity extends AppCompatActivity {
     private int mCountTrueAnswers = 0;
     private int mCountHints = 3;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +68,24 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         mBgElement = (LinearLayout) findViewById(R.id.bgElement);
+        mBgElement .setOnTouchListener(new OnSwipeTouchListener(QuizActivity.this) {
+            @Override
+            public void onSwipeRight() {
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                updateQuestion();
+                isAnswered(mCurrentIndex);
+            }
+            @Override
+            public void onSwipeLeft() {
+                if (mCurrentIndex != 0) {
+                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
+                } else {
+                    mCurrentIndex = mQuestionBank.length - 1;
+                }
+                isAnswered(mCurrentIndex);
+                updateQuestion();
+            }
+        });
 
         mMainQuestionImageView = (ImageView) findViewById(R.id.main_question_photo);
         mMainQuestionImageView.setImageResource(R.drawable.australia_01);
