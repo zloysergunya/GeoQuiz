@@ -35,6 +35,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView mQuestionTextView;
     private TextView mCurrentQuestionTextView;
     private TextView mCountHintsTextView;
+    private TextView mTrueAnswers;
     private ImageView mMainQuestionImageView;
 
     private Question[] mQuestionBank = new Question[] {
@@ -71,12 +72,6 @@ public class QuizActivity extends AppCompatActivity {
         mBgElement .setOnTouchListener(new OnSwipeTouchListener(QuizActivity.this) {
             @Override
             public void onSwipeRight() {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                updateQuestion();
-                isAnswered(mCurrentIndex);
-            }
-            @Override
-            public void onSwipeLeft() {
                 if (mCurrentIndex != 0) {
                     mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
                 } else {
@@ -84,6 +79,12 @@ public class QuizActivity extends AppCompatActivity {
                 }
                 isAnswered(mCurrentIndex);
                 updateQuestion();
+            }
+            @Override
+            public void onSwipeLeft() {
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                updateQuestion();
+                isAnswered(mCurrentIndex);
             }
         });
 
@@ -108,6 +109,9 @@ public class QuizActivity extends AppCompatActivity {
 
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
 
+        mTrueAnswers = (TextView) findViewById(R.id.true_answers);
+        mTrueAnswers.setTypeface(null, Typeface.BOLD);
+
         mTrueButton = (Button) findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +124,7 @@ public class QuizActivity extends AppCompatActivity {
                 } else {
                     mBgElement.setBackgroundColor(Color.rgb(250, 128, 114)); // Red
                 }
+                mTrueAnswers.setText(mCountTrueAnswers + " out of " + mQuestionBank.length + " correct answers");
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
         });
@@ -136,6 +141,7 @@ public class QuizActivity extends AppCompatActivity {
                 } else {
                     mBgElement.setBackgroundColor(Color.rgb(250, 128, 114)); // Red
                 }
+                mTrueAnswers.setText(mCountTrueAnswers + " out of " + mQuestionBank.length + " correct answers");
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
         });
@@ -180,6 +186,7 @@ public class QuizActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_OK) {
             return;
         }
