@@ -28,8 +28,6 @@ public class QuizActivity extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
-    private ImageButton mNextButton;
-    private ImageButton mPrevButton;
     private ImageButton mCheatButton;
     private ImageButton mRestartGame;
     private TextView mQuestionTextView;
@@ -142,30 +140,6 @@ public class QuizActivity extends AppCompatActivity {
                 }
                 mTrueAnswers.setText(mCountTrueAnswers + " out of " + mQuestionBank.length + " correct answers");
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
-            }
-        });
-
-        mPrevButton = (ImageButton) findViewById(R.id.prev_button);
-        mPrevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCurrentIndex != 0) {
-                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
-                } else {
-                    mCurrentIndex = mQuestionBank.length - 1;
-                }
-                isAnswered(mCurrentIndex);
-                updateQuestion();
-            }
-        });
-
-        mNextButton = (ImageButton) findViewById(R.id.next_button);
-        mNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                updateQuestion();
-                isAnswered(mCurrentIndex);
             }
         });
 

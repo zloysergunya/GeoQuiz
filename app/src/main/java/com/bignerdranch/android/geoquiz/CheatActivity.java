@@ -44,9 +44,6 @@ public class CheatActivity extends AppCompatActivity {
 
         mAnswerTextView = (TextView) findViewById(R.id.answer_text_view);
 
-        mApiVersionTextView = (TextView) findViewById(R.id.api_version);
-        mApiVersionTextView.setText("API level " + Build.VERSION.SDK_INT);
-
         mShowAnswerButton = (Button) findViewById(R.id.show_answer_button);
         mShowAnswerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,12 +66,12 @@ public class CheatActivity extends AppCompatActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
-                            mShowAnswerButton.setVisibility(View.VISIBLE);
+                            mShowAnswerButton.setVisibility(View.INVISIBLE);
                         }
                     });
                     anim.start();
                 } else  {
-                    mShowAnswerButton.setVisibility(View.VISIBLE);
+                    mShowAnswerButton.setVisibility(View.INVISIBLE);
                 }
             }
         });
