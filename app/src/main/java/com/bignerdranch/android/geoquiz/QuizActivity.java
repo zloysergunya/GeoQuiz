@@ -28,8 +28,6 @@ public class QuizActivity extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
-    private ImageButton mNextButton;
-    private ImageButton mPrevButton;
     private ImageButton mCheatButton;
     private ImageButton mRestartGame;
     private TextView mQuestionTextView;
@@ -40,15 +38,15 @@ public class QuizActivity extends AppCompatActivity {
 
     private Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_australia, R.drawable.australia_01, true),
-            new Question(R.string.question_oceans, R.drawable.australia_01, true),
-            new Question(R.string.question_mideast, R.drawable.australia_01, false),
-            new Question(R.string.question_day, R.drawable.australia_01, true),
-            new Question(R.string.question_africa, R.drawable.australia_01, false),
-            new Question(R.string.question_americas, R.drawable.australia_01, true),
-            new Question(R.string.question_continents, R.drawable.australia_01, true),
-            new Question(R.string.question_penguins, R.drawable.australia_01, false),
-            new Question(R.string.question_asia, R.drawable.australia_01, true),
-            new Question(R.string.question_island_australia, R.drawable.australia_01, false)
+            new Question(R.string.question_oceans, R.drawable.pacific_ocean_02, true),
+            new Question(R.string.question_mideast, R.drawable.suez_canal_03, false),
+            new Question(R.string.question_day, R.drawable.rotation_earth_04, true),
+            new Question(R.string.question_africa, R.drawable.egypt_neal_05, false),
+            new Question(R.string.question_americas, R.drawable.amazon_river_06, true),
+            new Question(R.string.question_continents, R.drawable.continents_07, true),
+            new Question(R.string.question_penguins, R.drawable.penguins_08, false),
+            new Question(R.string.question_asia, R.drawable.lake_baikal_09, true),
+            new Question(R.string.question_island_australia, R.drawable.australia_island_10, false)
     };
 
     private int mCurrentIndex = 0;
@@ -142,30 +140,6 @@ public class QuizActivity extends AppCompatActivity {
                 }
                 mTrueAnswers.setText(mCountTrueAnswers + " out of " + mQuestionBank.length + " correct answers");
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
-            }
-        });
-
-        mPrevButton = (ImageButton) findViewById(R.id.prev_button);
-        mPrevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCurrentIndex != 0) {
-                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
-                } else {
-                    mCurrentIndex = mQuestionBank.length - 1;
-                }
-                isAnswered(mCurrentIndex);
-                updateQuestion();
-            }
-        });
-
-        mNextButton = (ImageButton) findViewById(R.id.next_button);
-        mNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                updateQuestion();
-                isAnswered(mCurrentIndex);
             }
         });
 

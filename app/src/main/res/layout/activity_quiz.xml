@@ -72,31 +72,12 @@
             android:id="@+id/question_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:layout_margin="10sp"
-            tools:text="Question Text"
+            android:textAlignment="center"
             android:textSize="20sp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
+            tools:text="Question Text" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/prev_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_left"
-            android:contentDescription="@string/prev_button"/>
-
-        <ImageButton
-            android:id="@+id/next_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_right"
-            android:contentDescription="@string/next_button"/>
     </LinearLayout>
 
     <LinearLayout
