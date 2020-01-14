@@ -65,12 +65,12 @@ public class CheatActivity extends AppCompatActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
-                            mShowAnswerButton.setVisibility(View.VISIBLE);
+                            mShowAnswerButton.setVisibility(View.INVISIBLE);
                         }
                     });
                     anim.start();
                 } else  {
-                    mShowAnswerButton.setVisibility(View.VISIBLE);
+                    mShowAnswerButton.setVisibility(View.INVISIBLE);
                 }
             }
         });
