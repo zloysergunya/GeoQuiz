@@ -99,10 +99,13 @@ public class QuizActivity extends AppCompatActivity {
 
         mCurrentQuestionTextView = (TextView) findViewById(R.id.current_question);
         mCurrentQuestionTextView.setTypeface(null, Typeface.BOLD);
-        mCurrentQuestionTextView.setText("Question " + (mCurrentIndex + 1) + " of " + mQuestionBank.length);
+        mCurrentQuestionTextView.setText(getResources().getString(R.string.question_text_view)
+                + " " + (mCurrentIndex + 1) + " " + getResources().getString(R.string.of_text)
+                + " " + mQuestionBank.length);
 
         mCountHintsTextView = (TextView) findViewById(R.id.count_hints);
-        mCountHintsTextView.setText(mCountHints + " hint(s) left");
+        mCountHintsTextView.setText(getResources()
+                .getQuantityString(R.plurals.hint_plural, mCountHints, mCountHints));
 
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
 
@@ -121,7 +124,10 @@ public class QuizActivity extends AppCompatActivity {
                 } else {
                     mBgElement.setBackgroundColor(Color.rgb(250, 128, 114)); // Red
                 }
-                mTrueAnswers.setText(mCountTrueAnswers + " out of " + mQuestionBank.length + " correct answers");
+                mTrueAnswers.setText(mCountTrueAnswers + " "
+                        + getResources().getString(R.string.out_of_text) + " "
+                        + mQuestionBank.length + " "
+                        + getResources().getString(R.string.correct_answers_text));
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
         });
@@ -138,7 +144,10 @@ public class QuizActivity extends AppCompatActivity {
                 } else {
                     mBgElement.setBackgroundColor(Color.rgb(250, 128, 114)); // Red
                 }
-                mTrueAnswers.setText(mCountTrueAnswers + " out of " + mQuestionBank.length + " correct answers");
+                mTrueAnswers.setText(mCountTrueAnswers + " "
+                        + getResources().getString(R.string.out_of_text)  + " "
+                        + mQuestionBank.length + " "
+                        + getResources().getString(R.string.correct_answers_text));
                 percantageOfCorrectAnswers(mCountAnswers, mCountTrueAnswers);
             }
         });
@@ -172,9 +181,10 @@ public class QuizActivity extends AppCompatActivity {
                 mCountHints--;
                 if (mCountHints <= 0) {
                     mCheatButton.setEnabled(false);
-                    mCountHintsTextView.setText("Hints are over!");
+                    mCountHintsTextView.setText(getResources().getString(R.string.hints_over_text));
                 } else {
-                    mCountHintsTextView.setText(mCountHints + " hint(s) left");
+                    mCountHintsTextView.setText(getResources()
+                            .getQuantityString(R.plurals.hint_plural, mCountHints, mCountHints));
                 }
             }
         }
@@ -223,7 +233,9 @@ public class QuizActivity extends AppCompatActivity {
         mQuestionTextView.setText(questionText);
         mMainQuestionImageView.setImageResource(questionImage);
         mBgElement.setBackgroundColor(mQuestionBank[mCurrentIndex].getBgColor());
-        mCurrentQuestionTextView.setText("Question " + (mCurrentIndex + 1) + " of " + mQuestionBank.length);
+        mCurrentQuestionTextView.setText(getResources().getString(R.string.question_text_view)
+                + " " + (mCurrentIndex + 1)  + " " + getResources().getString(R.string.of_text)
+                + " " + mQuestionBank.length);
     }
 
     private void checkAnswer(boolean userPressedTrue) {
@@ -256,7 +268,8 @@ public class QuizActivity extends AppCompatActivity {
     private void percantageOfCorrectAnswers(int countAnswers, int countTrueAnswers){
         if (countAnswers == mQuestionBank.length){
             double percent = countTrueAnswers * 100.0 / countAnswers;
-            Toast.makeText(QuizActivity.this, "Percentage of correct answers "
+            Toast.makeText(QuizActivity.this,
+                    getResources().getString(R.string.percentage_text) + " "
                     + Math.round(percent) + "%", Toast.LENGTH_SHORT).show();
             mRestartGame.setVisibility(View.VISIBLE);
         }

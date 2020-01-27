@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Гео викторина</string>
+
+    <string name="true_button">Правда</string>
+    <string name="false_button">Ложь</string>
+    <string name="restart_button">Заново</string>
+
+    <string name="correct_toast">Верно!</string>
+    <string name="incorrect_toast">Неверно!</string>
+    <string name="warning_text">Вы уверены что хотите сделать это?</string>
+    <string name="show_answer_button">Показать ответ</string>
+    <string name="cheat_button">Подсказка!</string>
+    <string name="judgment_toast">Использована подсказка.</string>
+    <string name="question_text_view">Вопрос</string>
+    <string name="of_text">из</string>
+    <string name="out_of_text">из</string>
+    <string name="correct_answers_text">правильных ответов</string>
+    <string name="hints_over_text">Подсказки закончились!</string>
+    <string name="percentage_text">Процент правильных ответов </string>
+    <plurals name="hint_plural">
+        <item quantity="one">%1$d подсказка</item>
+        <item quantity="few">%1$d подсказки</item>
+        <item quantity="many">%1$d подсказок</item>
+    </plurals>
+
+    <string name="question_australia">Канберра столица Австралии.</string>
+    <string name="question_oceans">Тихий океан больше Атлантического океана.</string>
+    <string name="question_mideast">Суэцкий канал соединяет Красное море и Индийский океан.</string>
+    <string name="question_africa">Исток реки Нил находится в Египте.</string>
+    <string name="question_americas">Амазонка - самая длинная река в Америке.</string>
+    <string name="question_asia">Байкал - самое старое и глубокое пресноводное озеро в мире.</string>
+    <string name="question_continents">На Земле 6 континентов.</string>
+    <string name="question_island_australia">Австралия это остров.</string>
+    <string name="question_penguins">Пингвины живут на Северном полюсе.</string>
+    <string name="question_day">День является следствием вращения Земли вокруг своей оси.</string>
+</resources>
