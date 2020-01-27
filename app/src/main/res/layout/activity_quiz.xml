@@ -50,7 +50,8 @@
             android:id="@+id/main_question_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"/>
+            android:layout_margin="10sp"
+            />
 
     </RelativeLayout>
 
@@ -64,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Current Question"
-
+            android:textSize="15sp"
             android:layout_gravity="center_vertical|center_horizontal"/>
 
         <TextView
@@ -74,10 +75,28 @@
             android:layout_margin="10sp"
             tools:text="Question Text"
             android:textSize="20sp"
-            android:gravity="center"
-            android:autoSizeTextType="uniform"
             android:layout_gravity="center_vertical|center_horizontal"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/prev_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_left"
+            android:contentDescription="@string/prev_button"/>
+
+        <ImageButton
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            android:contentDescription="@string/next_button"/>
     </LinearLayout>
 
     <LinearLayout
@@ -90,6 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="True Answers"
+            android:textSize="15sp"
             android:layout_gravity="center_vertical|center_horizontal"/>
     </LinearLayout>
 
@@ -111,6 +131,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/true_button"
+                android:textSize="15sp"
                 android:background="@drawable/rounded_button"
                 android:layout_margin="5sp"
                 android:layout_gravity="center_horizontal"
@@ -122,6 +143,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/false_button"
+                android:textSize="15sp"
                 android:layout_marginRight="@+id/true_button"
                 android:background="@drawable/rounded_button"
                 android:layout_margin="5sp"
