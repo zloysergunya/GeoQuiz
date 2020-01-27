@@ -179,6 +179,7 @@ public class QuizActivity extends AppCompatActivity {
             mQuestionBank[mCurrentIndex].setCheatered(CheatActivity.wasAnswerShown(data));
             if (mQuestionBank[mCurrentIndex].isCheatered()) {
                 mCountHints--;
+                mCheatButton.setEnabled(false);
                 if (mCountHints <= 0) {
                     mCheatButton.setEnabled(false);
                     mCountHintsTextView.setText(getResources().getString(R.string.hints_over_text));
@@ -230,6 +231,9 @@ public class QuizActivity extends AppCompatActivity {
     private void updateQuestion() {
         int questionText = mQuestionBank[mCurrentIndex].getTextResId();
         int questionImage = mQuestionBank[mCurrentIndex].getImageResId();
+        if (!mQuestionBank[mCurrentIndex].isCheatered()) {
+            mCheatButton.setEnabled(true);
+        }
         mQuestionTextView.setText(questionText);
         mMainQuestionImageView.setImageResource(questionImage);
         mBgElement.setBackgroundColor(mQuestionBank[mCurrentIndex].getBgColor());
